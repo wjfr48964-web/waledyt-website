@@ -1,29 +1,14 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  >
-
-  <meta
-    name="description"
-    content="WALED YT - جميع الحسابات الرسمية في مكان واحد."
-  >
-
-  <meta name="theme-color" content="#050505">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#050505" />
+  <meta name="description" content="WALED YT - جميع روابط وحسابات وليد" />
   <title>WALED YT</title>
 
   <style>
-    /* =========================
-       RESET
-    ========================== */
-
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
     }
@@ -33,1251 +18,788 @@
     }
 
     body {
+      margin: 0;
       min-height: 100vh;
-      overflow-x: hidden;
-      background: #050505;
-      color: #ffffff;
-
       font-family:
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
+        "Cairo",
+        "Tajawal",
         "Segoe UI",
-        Tahoma,
         Arial,
         sans-serif;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(24, 255, 145, 0.08), transparent 30%),
+        radial-gradient(circle at 0% 80%, rgba(0, 255, 128, 0.045), transparent 28%),
+        #050505;
+      color: #fff;
+      overflow-x: hidden;
     }
 
+    button,
     a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
       font: inherit;
     }
 
+    /* ---------------------------
+       الخلفية
+    ---------------------------- */
 
-    /* =========================
-       PAGE
-    ========================== */
+    .background {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .background::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      left: 50%;
+      top: -180px;
+      transform: translateX(-50%);
+      background: rgba(0, 255, 132, 0.11);
+      filter: blur(120px);
+      border-radius: 50%;
+    }
+
+    .background::after {
+      content: "";
+      position: absolute;
+      width: 330px;
+      height: 330px;
+      right: -100px;
+      bottom: 10%;
+      background: rgba(0, 220, 110, 0.06);
+      filter: blur(110px);
+      border-radius: 50%;
+    }
+
+    .glow-one,
+    .glow-two {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(110px);
+      opacity: 0.45;
+    }
+
+    .glow-one {
+      width: 220px;
+      height: 220px;
+      left: -100px;
+      top: 35%;
+      background: rgba(0, 255, 140, 0.05);
+    }
+
+    .glow-two {
+      width: 260px;
+      height: 260px;
+      right: -120px;
+      top: 55%;
+      background: rgba(0, 255, 140, 0.045);
+    }
+
+    /* ---------------------------
+       الحاوية
+    ---------------------------- */
 
     .page {
       position: relative;
-      min-height: 100vh;
-      isolation: isolate;
-      overflow: hidden;
-    }
-
-
-    /* =========================
-       BACKGROUND
-       مبنية على صورة القناة نفسها
-    ========================== */
-
-    .ambient-bg {
-      position: fixed;
-      inset: -10%;
-      z-index: -10;
-
-      background-image:
-        var(--avatar-bg),
-        radial-gradient(
-          circle at 50% 15%,
-          rgba(255,255,255,0.08),
-          transparent 35%
-        );
-
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-
-      filter: blur(42px) saturate(1.12);
-      transform: scale(1.12);
-
-      opacity: 0.34;
-
-      animation: ambientMove 10s ease-in-out infinite alternate;
-      pointer-events: none;
-    }
-
-    @keyframes ambientMove {
-      0% {
-        transform:
-          scale(1.12)
-          translate3d(0,0,0);
-      }
-
-      100% {
-        transform:
-          scale(1.17)
-          translate3d(0,-12px,0);
-      }
-    }
-
-
-    .ambient-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: -9;
-      pointer-events: none;
-
-      background:
-        radial-gradient(
-          circle at 50% 12%,
-          rgba(16,185,129,0.13),
-          transparent 27%
-        ),
-        radial-gradient(
-          circle at 20% 70%,
-          rgba(14,165,233,0.08),
-          transparent 27%
-        ),
-        linear-gradient(
-          180deg,
-          rgba(2,4,3,0.62),
-          rgba(3,5,4,0.92) 60%,
-          rgba(3,4,4,0.98)
-        );
-    }
-
-
-    /* نقاط ضوء متحركة */
-
-    .light {
-      position: fixed;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: -8;
-      filter: blur(50px);
-      opacity: 0.20;
-    }
-
-    .light.one {
-      width: 220px;
-      height: 220px;
-      top: -90px;
-      right: -80px;
-      background: #22c55e;
-
-      animation: lightOne 7s ease-in-out infinite alternate;
-    }
-
-    .light.two {
-      width: 250px;
-      height: 250px;
-      bottom: -110px;
-      left: -80px;
-      background: #0ea5e9;
-
-      animation: lightTwo 9s ease-in-out infinite alternate;
-    }
-
-    @keyframes lightOne {
-      0% {
-        transform: translate3d(0,0,0) scale(1);
-      }
-
-      100% {
-        transform: translate3d(-35px,40px,0) scale(1.14);
-      }
-    }
-
-    @keyframes lightTwo {
-      0% {
-        transform: translate3d(0,0,0) scale(1);
-      }
-
-      100% {
-        transform: translate3d(45px,-35px,0) scale(1.12);
-      }
-    }
-
-
-    /* شبكة خفيفة جدًا */
-
-    .grid {
-      position: fixed;
-      inset: 0;
-      z-index: -7;
-      pointer-events: none;
-
-      opacity: 0.045;
-
-      background-image:
-        linear-gradient(
-          rgba(255,255,255,0.06) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(255,255,255,0.06) 1px,
-          transparent 1px
-        );
-
-      background-size: 42px 42px;
-
-      mask-image:
-        linear-gradient(
-          to bottom,
-          transparent,
-          black 20%,
-          black 80%,
-          transparent
-        );
-    }
-
-
-    /* =========================
-       MAIN CONTAINER
-    ========================== */
-
-    .container {
-      width: min(700px, calc(100% - 28px));
+      z-index: 1;
+      width: 100%;
+      max-width: 620px;
       margin: 0 auto;
-      padding: 30px 0 45px;
+      padding: 55px 18px 45px;
     }
 
+    /* ---------------------------
+       الرأس / الصورة
+    ---------------------------- */
 
-    /* =========================
-       TOP MINI BRAND
-    ========================== */
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      margin-bottom: 15px;
-    }
-
-    .mini-brand {
-      width: 43px;
-      height: 43px;
-
-      display: grid;
-      place-items: center;
-
-      border-radius: 14px;
-
-      background:
-        rgba(255,255,255,0.055);
-
-      border:
-        1px solid rgba(255,255,255,0.085);
-
-      backdrop-filter: blur(18px);
-
-      box-shadow:
-        0 15px 35px rgba(0,0,0,0.22);
-    }
-
-    .mini-brand img {
-      width: 27px;
-      height: 27px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-
-    /* =========================
-       HERO
-    ========================== */
-
-    .hero {
+    .profile {
       text-align: center;
-      padding-top: 5px;
+      margin-bottom: 30px;
     }
 
-
-    .avatar-area {
+    .avatar-wrap {
       position: relative;
-      width: 136px;
-      height: 136px;
-      margin: 0 auto 22px;
+      width: 116px;
+      height: 116px;
+      margin: 0 auto 18px;
     }
-
-
-    /* الحلقة الخارجية */
 
     .avatar-ring {
       position: absolute;
-      inset: -7px;
-
+      inset: -4px;
       border-radius: 50%;
-
-      background:
-        conic-gradient(
-          from 0deg,
-          #22c55e,
-          #19d47d,
-          #0ea5e9,
-          #22c55e
-        );
-
-      animation:
-        ringRotate 2.5s linear infinite;
-
-      filter:
-        drop-shadow(
-          0 0 18px rgba(34,197,94,0.22)
-        );
+      background: conic-gradient(
+        from 0deg,
+        #00ff88,
+        rgba(0, 255, 136, 0.12),
+        #00ff88,
+        rgba(0, 255, 136, 0.12),
+        #00ff88
+      );
+      animation: rotateRing 7s linear infinite;
+      filter: drop-shadow(0 0 12px rgba(0, 255, 136, 0.35));
     }
 
+    .avatar-inner {
+      position: absolute;
+      inset: 4px;
+      border-radius: 50%;
+      background: #0a0a0a;
+      padding: 4px;
+      z-index: 2;
+    }
 
-    @keyframes ringRotate {
-      from {
-        transform: rotate(0deg);
-      }
+    .avatar {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 50%;
+      object-fit: cover;
+      background: linear-gradient(145deg, #101010, #080808);
+    }
 
+    .avatar-wrap::after {
+      content: "";
+      position: absolute;
+      width: 17px;
+      height: 17px;
+      right: 2px;
+      bottom: 8px;
+      border: 3px solid #050505;
+      border-radius: 50%;
+      background: #00f286;
+      box-shadow:
+        0 0 0 4px rgba(0, 242, 134, 0.08),
+        0 0 16px rgba(0, 242, 134, 0.65);
+      z-index: 4;
+      animation: onlinePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes rotateRing {
       to {
         transform: rotate(360deg);
       }
     }
 
-
-    .avatar-border {
-      position: absolute;
-      inset: -2px;
-      border-radius: 50%;
-
-      background: #07100b;
-      z-index: 1;
-    }
-
-
-    .avatar {
-      position: absolute;
-      inset: 2px;
-
-      width: calc(100% - 4px);
-      height: calc(100% - 4px);
-
-      object-fit: cover;
-      border-radius: 50%;
-
-      z-index: 2;
-
-      background: #111;
-
-      border: 4px solid #08110c;
-
-      box-shadow:
-        0 20px 55px rgba(0,0,0,0.42);
-    }
-
-
-    /* =========================
-       النقطة الخضراء السريعة
-    ========================== */
-
-    .status-dot {
-      position: absolute;
-
-      right: 2px;
-      bottom: 6px;
-
-      width: 23px;
-      height: 23px;
-
-      background: #22c55e;
-
-      border-radius: 50%;
-
-      border: 4px solid #07100b;
-
-      z-index: 5;
-
-      box-shadow:
-        0 0 12px rgba(34,197,94,0.95),
-        0 0 28px rgba(34,197,94,0.42);
-
-      animation:
-        dotBeat 1.05s ease-out infinite;
-    }
-
-
-    /* الحلقة المتحركة حول النقطة */
-
-    .status-dot::before,
-    .status-dot::after {
-      content: "";
-
-      position: absolute;
-      inset: -7px;
-
-      border-radius: 50%;
-
-      border: 2px solid rgba(34,197,94,0.58);
-
-      animation:
-        dotRing 1.05s ease-out infinite;
-    }
-
-    .status-dot::after {
-      animation-delay: 0.32s;
-    }
-
-
-    @keyframes dotBeat {
-      0% {
-        transform: scale(0.92);
+    @keyframes onlinePulse {
+      0%, 100% {
+        box-shadow:
+          0 0 0 4px rgba(0, 242, 134, 0.08),
+          0 0 16px rgba(0, 242, 134, 0.55);
       }
 
-      42% {
-        transform: scale(1.09);
-      }
-
-      100% {
-        transform: scale(0.92);
+      50% {
+        box-shadow:
+          0 0 0 7px rgba(0, 242, 134, 0.03),
+          0 0 24px rgba(0, 242, 134, 0.9);
       }
     }
-
-
-    @keyframes dotRing {
-      0% {
-        transform: scale(0.45);
-        opacity: 0.95;
-      }
-
-      100% {
-        transform: scale(1.55);
-        opacity: 0;
-      }
-    }
-
-
-    /* =========================
-       NAME
-    ========================== */
 
     .title {
-      font-size:
-        clamp(36px, 9vw, 54px);
-
-      line-height: 1;
-
-      font-weight: 950;
-
-      letter-spacing: -2px;
-
-      text-shadow:
-        0 12px 40px rgba(0,0,0,0.35);
+      margin: 0;
+      font-size: 31px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      color: #fff;
     }
 
-
-    .handle {
-      margin-top: 11px;
-
-      color: #9ca7a2;
-
+    .username {
+      margin: 4px 0 0;
       font-size: 15px;
-
+      font-weight: 600;
+      color: #8f8f8f;
       direction: ltr;
     }
 
-
-    .description {
-      width: min(560px, 100%);
-
-      margin:
-        14px auto 0;
-
-      color: #a7b0ac;
-
-      font-size: 14px;
-
+    .bio {
+      max-width: 430px;
+      margin: 12px auto 0;
+      color: #bcbcbc;
       line-height: 1.8;
+      font-size: 14px;
     }
 
-
-    /* =========================
-       FOLLOWER BOX
-    ========================== */
+    /* ---------------------------
+       إجمالي المتابعين
+    ---------------------------- */
 
     .followers-box {
       position: relative;
-
-      width: min(470px, 100%);
-
-      margin:
-        24px auto 0;
-
-      padding:
-        21px 20px 19px;
-
-      border-radius: 25px;
-
+      margin: 26px auto 14px;
+      padding: 18px 20px;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
       background:
         linear-gradient(
-          180deg,
-          rgba(255,255,255,0.065),
-          rgba(255,255,255,0.028)
+          135deg,
+          rgba(255, 255, 255, 0.045),
+          rgba(255, 255, 255, 0.018)
         );
-
-      border:
-        1px solid rgba(255,255,255,0.09);
-
-      backdrop-filter: blur(20px);
-
       box-shadow:
-        0 22px 65px rgba(0,0,0,0.30);
-
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 18px 50px rgba(0, 0, 0, 0.22);
       overflow: hidden;
     }
-
 
     .followers-box::before {
       content: "";
-
       position: absolute;
-
-      width: 180px;
-      height: 180px;
-
-      top: -110px;
-      left: 50%;
-
-      transform: translateX(-50%);
-
-      border-radius: 50%;
-
-      background: rgba(34,197,94,0.10);
-
-      filter: blur(28px);
-
-      pointer-events: none;
+      inset: 0;
+      background:
+        linear-gradient(
+          120deg,
+          transparent 20%,
+          rgba(0, 255, 136, 0.05),
+          transparent 70%
+        );
+      transform: translateX(100%);
+      animation: boxShine 6s ease-in-out infinite;
     }
 
+    @keyframes boxShine {
+      0%, 65%, 100% {
+        transform: translateX(100%);
+      }
+
+      82% {
+        transform: translateX(-100%);
+      }
+    }
 
     .followers-label {
       position: relative;
-
+      color: #8e8e8e;
       font-size: 13px;
-
-      color: #8c9892;
-
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
-
 
     .followers-number {
       position: relative;
-
+      font-size: 30px;
+      font-weight: 900;
       direction: ltr;
-
-      font-size:
-        clamp(38px, 9vw, 53px);
-
-      font-weight: 950;
-
-      letter-spacing: -1px;
-
-      font-variant-numeric:
-        tabular-nums;
+      letter-spacing: 1px;
     }
 
-
-    .followers-word {
-      color: #b3bbb7;
-
-      font-size: 14px;
-
-      margin-right: 7px;
-
-      font-weight: 700;
-    }
-
-
-    .auto-update {
+    .auto-status {
       position: relative;
-
-      display: flex;
-
-      justify-content: center;
+      display: inline-flex;
       align-items: center;
-
       gap: 8px;
-
       margin-top: 9px;
-
-      color: #94a099;
-
+      color: #8f8f8f;
       font-size: 12px;
     }
 
-
-    .tiny-green {
-      width: 8px;
-      height: 8px;
-
+    .auto-dot {
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-
-      background: #22c55e;
-
-      box-shadow:
-        0 0 11px rgba(34,197,94,0.85);
-
-      animation:
-        tinyBeat 1.15s ease-in-out infinite;
+      background: #00ee83;
+      box-shadow: 0 0 12px rgba(0, 238, 131, 0.65);
     }
 
+    /* ---------------------------
+       الروابط
+    ---------------------------- */
 
-    @keyframes tinyBeat {
-      0%, 100% {
-        transform: scale(0.88);
-      }
-
-      50% {
-        transform: scale(1.18);
-      }
-    }
-
-
-    /* =========================
-       SECTION HEADING
-    ========================== */
-
-    .section-head {
-      display: flex;
-
-      justify-content: space-between;
-      align-items: center;
-
-      margin:
-        31px 4px 14px;
-    }
-
-
-    .section-head h2 {
-      font-size: 16px;
-      font-weight: 900;
-    }
-
-
-    .section-head span {
-      color: #6e7973;
-      font-size: 11px;
-    }
-
-
-    /* =========================
-       SOCIAL LIST
-    ========================== */
-
-    .social-list {
+    .links {
       display: flex;
       flex-direction: column;
-
-      gap: 11px;
+      gap: 13px;
+      margin-top: 22px;
     }
 
+    .link-card {
+      --mx: 50%;
+      --my: 50%;
 
-    /* =========================
-       CARD
-    ========================== */
-
-    .social-card {
       position: relative;
-
       display: flex;
       align-items: center;
-
-      min-height: 83px;
-
-      padding:
-        13px 14px;
-
-      border-radius: 24px;
-
+      min-height: 78px;
+      padding: 13px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.085);
+      border-radius: 22px;
       background:
         linear-gradient(
-          180deg,
-          rgba(255,255,255,0.060),
-          rgba(255,255,255,0.027)
+          135deg,
+          rgba(255, 255, 255, 0.065),
+          rgba(255, 255, 255, 0.026)
         );
-
-      border:
-        1px solid rgba(255,255,255,0.085);
-
-      backdrop-filter:
-        blur(18px);
-
       box-shadow:
-        0 13px 45px rgba(0,0,0,0.20);
-
+        0 10px 35px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.035);
+      text-decoration: none;
+      color: white;
       overflow: hidden;
-
-      cursor: pointer;
-
+      isolation: isolate;
+      transform: translateZ(0);
       transition:
-        transform 0.22s cubic-bezier(.2,.8,.2,1),
+        transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
         border-color 0.22s ease,
-        background 0.22s ease,
-        box-shadow 0.22s ease;
+        box-shadow 0.22s ease,
+        background 0.22s ease;
     }
 
-
-    /* ضوء يمر على البطاقة */
-
-    .social-card::before {
+    /* الإضاءة التي تتبع مكان اللمس */
+    .link-card::before {
       content: "";
-
       position: absolute;
-
-      top: 0;
-      bottom: 0;
-
-      right: -130px;
-
-      width: 100px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(255,255,255,0.08),
-          transparent
-        );
-
-      transform:
-        skewX(-16deg);
-
+      left: var(--mx);
+      top: var(--my);
+      width: 150px;
+      height: 150px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(0, 255, 136, 0.13) 0%,
+        rgba(0, 255, 136, 0.055) 35%,
+        transparent 72%
+      );
       opacity: 0;
-
-      transition:
-        right 0.7s ease,
-        opacity 0.2s ease;
-
+      transition: opacity 0.2s ease;
       pointer-events: none;
+      z-index: -1;
     }
 
+    /* لمعة تمر عبر البطاقة */
+    .link-card::after {
+      content: "";
+      position: absolute;
+      top: -40%;
+      left: -70%;
+      width: 45%;
+      height: 180%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.12),
+        transparent
+      );
+      transform: rotate(16deg);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 3;
+    }
 
-    .social-card:hover::before {
-      right: calc(100% + 100px);
+    .link-card:hover {
+      transform: translateY(-3px) scale(1.012);
+      border-color: rgba(0, 255, 136, 0.24);
+      box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.30),
+        0 0 0 1px rgba(0, 255, 136, 0.04),
+        0 0 25px rgba(0, 255, 136, 0.055);
+    }
+
+    .link-card:hover::before {
       opacity: 1;
     }
 
-
-    .social-card:hover {
-      transform: translateY(-2px);
-
-      border-color:
-        rgba(255,255,255,0.16);
-
-      background:
-        linear-gradient(
-          180deg,
-          rgba(255,255,255,0.075),
-          rgba(255,255,255,0.033)
-        );
-
-      box-shadow:
-        0 18px 50px rgba(0,0,0,0.25);
+    .link-card:hover::after {
+      animation: shineSweep 0.75s ease forwards;
     }
 
+    @keyframes shineSweep {
+      0% {
+        left: -70%;
+        opacity: 0;
+      }
 
-    /* حركة الضغط */
+      15% {
+        opacity: 1;
+      }
 
-    .social-card.pressed {
-      transform:
-        scale(0.965);
-
-      border-color:
-        rgba(34,197,94,0.35);
-
-      box-shadow:
-        0 0 0 1px rgba(34,197,94,0.12),
-        0 15px 40px rgba(34,197,94,0.07);
-    }
-
-
-    /* =========================
-       RIPPLE
-    ========================== */
-
-    .ripple {
-      position: absolute;
-
-      width: 20px;
-      height: 20px;
-
-      border-radius: 50%;
-
-      background:
-        rgba(255,255,255,0.22);
-
-      transform:
-        translate(-50%, -50%)
-        scale(0);
-
-      pointer-events: none;
-
-      animation:
-        rippleAnimation 0.55s ease-out forwards;
-    }
-
-
-    @keyframes rippleAnimation {
-      to {
-        transform:
-          translate(-50%, -50%)
-          scale(16);
-
+      100% {
+        left: 145%;
         opacity: 0;
       }
     }
 
+    /* الضغط */
+    .link-card.pressed {
+      transform: scale(0.945);
+      border-color: rgba(0, 255, 136, 0.62);
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0, 255, 136, 0.115),
+          rgba(255, 255, 255, 0.035)
+        );
+      box-shadow:
+        0 4px 18px rgba(0, 0, 0, 0.38),
+        0 0 0 1px rgba(0, 255, 136, 0.17),
+        0 0 32px rgba(0, 255, 136, 0.18);
+    }
 
-    /* =========================
-       PLATFORM ICON
-    ========================== */
+    .link-card.pressed::before {
+      opacity: 1;
+      width: 280px;
+      height: 280px;
+    }
 
-    .platform-icon {
-      width: 55px;
-      height: 55px;
+    .link-card.pressed::after {
+      animation: pressFlash 0.55s ease forwards;
+    }
 
-      flex:
-        0 0 55px;
+    @keyframes pressFlash {
+      0% {
+        left: -75%;
+        opacity: 0;
+      }
 
+      15% {
+        opacity: 1;
+      }
+
+      100% {
+        left: 155%;
+        opacity: 0;
+      }
+    }
+
+    /* ---------------------------
+       الأيقونة
+    ---------------------------- */
+
+    .icon-box {
+      flex: 0 0 50px;
+      width: 50px;
+      height: 50px;
       display: grid;
       place-items: center;
-
-      border-radius: 17px;
-
-      background:
-        rgba(255,255,255,0.06);
-
-      border:
-        1px solid rgba(255,255,255,0.09);
-
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid rgba(255, 255, 255, 0.065);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 7px 20px rgba(0, 0, 0, 0.14);
       transition:
-        transform 0.22s ease;
+        transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+      overflow: hidden;
     }
 
-
-    .platform-icon img {
+    .icon-box img {
       width: 29px;
       height: 29px;
-
       object-fit: contain;
+      display: block;
     }
 
-
-    .social-card:hover
-    .platform-icon {
-      transform:
-        scale(1.07)
-        rotate(-2deg);
+    .link-card:hover .icon-box {
+      transform: scale(1.08) rotate(-2deg);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        0 0 20px rgba(0, 255, 136, 0.08);
     }
 
+    .link-card.pressed .icon-box {
+      transform: scale(0.88) rotate(3deg);
+    }
 
-    /* =========================
-       INFO
-    ========================== */
+    /* ---------------------------
+       النص
+    ---------------------------- */
 
-    .social-info {
+    .link-content {
       min-width: 0;
-
-      text-align: right;
-
-      margin-right: 13px;
+      flex: 1;
+      padding: 0 14px;
     }
 
-
-    .platform-name {
-      display: block;
-
-      font-size: 15px;
-
-      font-weight: 900;
-
-      line-height: 1.2;
+    .link-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.35;
     }
 
-
-    .platform-user {
-      display: block;
-
-      margin-top: 5px;
-
-      color: #919c96;
-
+    .link-subtitle {
+      margin: 4px 0 0;
+      color: #888;
       font-size: 12px;
-
+      line-height: 1.4;
       direction: ltr;
       text-align: right;
-
       white-space: nowrap;
-
       overflow: hidden;
-
       text-overflow: ellipsis;
     }
 
+    /* ---------------------------
+       السهم
+    ---------------------------- */
 
-    /* =========================
-       ARROW
-    ========================== */
-
-    .card-arrow {
-      margin-inline-start: auto;
-
-      width: 41px;
-      height: 41px;
-
-      flex:
-        0 0 41px;
-
+    .arrow {
+      flex: 0 0 34px;
+      width: 34px;
+      height: 34px;
       display: grid;
       place-items: center;
-
-      border-radius: 13px;
-
-      background:
-        rgba(255,255,255,0.055);
-
-      border:
-        1px solid rgba(255,255,255,0.05);
-
-      color: #aeb8b3;
-
-      font-size: 18px;
-
+      border-radius: 11px;
+      color: #888;
+      background: rgba(255, 255, 255, 0.035);
       transition:
-        transform 0.22s ease,
-        background 0.22s ease,
-        color 0.22s ease;
+        transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+        color 0.2s ease,
+        background 0.2s ease;
     }
 
-
-    .social-card:hover
-    .card-arrow {
-      transform:
-        translateX(-3px);
-
-      background:
-        rgba(255,255,255,0.10);
-
-      color: #ffffff;
+    .arrow svg {
+      width: 17px;
+      height: 17px;
+      transition: transform 0.25s ease;
     }
 
-
-    /* =========================
-       PLATFORM CUSTOM GLOWS
-    ========================== */
-
-    .youtube .platform-icon {
-      background:
-        rgba(255,0,0,0.10);
+    .link-card:hover .arrow {
+      color: #fff;
+      background: rgba(0, 255, 136, 0.08);
+      transform: translateX(-3px);
     }
 
-    .instagram .platform-icon {
-      background:
-        rgba(225,48,108,0.10);
+    .link-card:hover .arrow svg {
+      transform: translateX(-2px);
     }
 
-    .tiktok .platform-icon {
-      background:
-        rgba(255,255,255,0.075);
+    .link-card.pressed .arrow {
+      color: #00ff88;
+      transform: scale(0.9);
     }
 
-    .facebook .platform-icon {
-      background:
-        rgba(24,119,242,0.11);
-    }
+    /* ---------------------------
+       Ripple
+    ---------------------------- */
 
-    .kick .platform-icon {
-      background:
-        rgba(83,246,136,0.09);
-    }
-
-    .discord .platform-icon {
-      background:
-        rgba(88,101,242,0.12);
-    }
-
-
-    /* =========================
-       LIVE KICK
-    ========================== */
-
-    .kick-live-badge {
+    .ripple {
       position: absolute;
-
-      top: 10px;
-      left: 10px;
-
-      display: none;
-
-      align-items: center;
-
-      gap: 6px;
-
-      padding:
-        4px 8px;
-
-      border-radius: 999px;
-
-      background: #ef2b2d;
-
-      color: white;
-
-      font-size: 10px;
-
-      font-weight: 950;
-
-      box-shadow:
-        0 0 16px rgba(239,43,45,0.23);
-    }
-
-
-    .kick-live-badge::before {
-      content: "";
-
-      width: 6px;
-      height: 6px;
-
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-
-      background: #ffffff;
-
-      animation:
-        liveSmall 0.85s ease-in-out infinite;
+      pointer-events: none;
+      background: rgba(255, 255, 255, 0.34);
+      transform: translate(-50%, -50%) scale(0);
+      animation: rippleEffect 0.65s cubic-bezier(0.15, 0.75, 0.25, 1) forwards;
+      z-index: 5;
     }
 
-
-    @keyframes liveSmall {
-      0%, 100% {
-        transform: scale(0.75);
+    @keyframes rippleEffect {
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.65;
       }
 
-      50% {
-        transform: scale(1.2);
+      60% {
+        opacity: 0.2;
+      }
+
+      100% {
+        transform: translate(-50%, -50%) scale(24);
+        opacity: 0;
       }
     }
 
+    /* ---------------------------
+       الفوتر
+    ---------------------------- */
 
-    .kick.is-live {
-      border-color:
-        rgba(239,43,45,0.30);
-
-      background:
-        linear-gradient(
-          180deg,
-          rgba(239,43,45,0.08),
-          rgba(255,255,255,0.027)
-        );
+    .footer {
+      text-align: center;
+      margin-top: 28px;
+      padding-top: 8px;
+      color: #676767;
+      font-size: 12px;
     }
 
+    .footer strong {
+      color: #989898;
+      font-weight: 800;
+    }
 
-    .kick.is-live
-    .kick-live-badge {
+    /* ---------------------------
+       انتقال الصفحة
+    ---------------------------- */
+
+    .page-transition {
+      position: fixed;
+      inset: 0;
       display: flex;
-    }
-
-
-    /* =========================
-       LIVE TOP CARD
-    ========================== */
-
-    .live-card {
-      display: none;
-
-      position: relative;
-
       align-items: center;
-
-      gap: 13px;
-
-      min-height: 82px;
-
-      padding:
-        13px 14px;
-
-      margin-bottom: 13px;
-
-      border-radius: 24px;
-
-      background:
-        linear-gradient(
-          90deg,
-          rgba(239,43,45,0.13),
-          rgba(255,255,255,0.035)
-        );
-
-      border:
-        1px solid rgba(239,43,45,0.24);
-
-      box-shadow:
-        0 18px 50px rgba(239,43,45,0.08);
-
-      overflow: hidden;
-
+      justify-content: center;
+      background: rgba(3, 3, 3, 0.56);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      opacity: 0;
+      visibility: hidden;
       transition:
-        transform 0.2s ease;
+        opacity 0.22s ease,
+        visibility 0.22s ease;
+      z-index: 9999;
+      pointer-events: none;
     }
 
-
-    .live-card.show {
-      display: flex;
-
-      animation:
-        liveCardIn 0.45s cubic-bezier(.2,.8,.2,1);
+    .page-transition.active {
+      opacity: 1;
+      visibility: visible;
     }
 
+    .transition-ring {
+      position: relative;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2px solid rgba(0, 255, 136, 0.13);
+    }
 
-    @keyframes liveCardIn {
+    .transition-ring::before {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: #00ff88;
+      border-right-color: rgba(0, 255, 136, 0.35);
+      animation: transitionSpin 0.7s linear infinite;
+    }
+
+    .transition-ring::after {
+      content: "W";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      font-size: 19px;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 0 18px rgba(0, 255, 136, 0.45);
+    }
+
+    @keyframes transitionSpin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ---------------------------
+       دخول العناصر
+    ---------------------------- */
+
+    .profile,
+    .followers-box,
+    .link-card {
+      animation: pageEnter 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    }
+
+    .followers-box {
+      animation-delay: 0.08s;
+    }
+
+    .link-card:nth-child(1) {
+      animation-delay: 0.13s;
+    }
+
+    .link-card:nth-child(2) {
+      animation-delay: 0.18s;
+    }
+
+    .link-card:nth-child(3) {
+      animation-delay: 0.23s;
+    }
+
+    .link-card:nth-child(4) {
+      animation-delay: 0.28s;
+    }
+
+    .link-card:nth-child(5) {
+      animation-delay: 0.33s;
+    }
+
+    .link-card:nth-child(6) {
+      animation-delay: 0.38s;
+    }
+
+    @keyframes pageEnter {
       from {
         opacity: 0;
-        transform:
-          translateY(-12px)
-          scale(0.98);
+        transform: translateY(18px) scale(0.98);
       }
 
       to {
         opacity: 1;
-        transform:
-          translateY(0)
-          scale(1);
+        transform: translateY(0) scale(1);
       }
     }
 
+    /* ---------------------------
+       الهاتف
+    ---------------------------- */
 
-    .live-card:hover {
-      transform:
-        translateY(-2px);
-    }
-
-
-    .live-card .platform-icon {
-      flex:
-        0 0 55px;
-    }
-
-
-    .live-content {
-      min-width: 0;
-    }
-
-
-    .live-title {
-      display: flex;
-
-      align-items: center;
-
-      gap: 8px;
-
-      flex-wrap: wrap;
-
-      font-weight: 900;
-
-      font-size: 14px;
-    }
-
-
-    .live-badge {
-      display: inline-flex;
-
-      align-items: center;
-
-      gap: 6px;
-
-      padding:
-        5px 9px;
-
-      border-radius: 999px;
-
-      background: #ef2b2d;
-
-      font-size: 10px;
-
-      font-weight: 950;
-    }
-
-
-    .live-badge::before {
-      content: "";
-
-      width: 6px;
-      height: 6px;
-
-      border-radius: 50%;
-
-      background: white;
-    }
-
-
-    .live-description {
-      margin-top: 5px;
-
-      font-size: 11px;
-
-      color: #a2aaa6;
-    }
-
-
-    /* =========================
-       FOOTER
-    ========================== */
-
-    .footer {
-      margin-top: 31px;
-
-      padding-top: 20px;
-
-      border-top:
-        1px solid rgba(255,255,255,0.07);
-
-      text-align: center;
-
-      color: #707a75;
-
-      font-size: 11px;
-
-      line-height: 1.8;
-    }
-
-
-    .footer strong {
-      color: #9aa49f;
-    }
-
-
-    /* =========================
-       RESPONSIVE
-    ========================== */
-
-    @media (min-width: 700px) {
-
-      .container {
-        padding-top: 40px;
+    @media (max-width: 480px) {
+      .page {
+        padding: 38px 14px 32px;
       }
 
-      .avatar-area {
-        width: 146px;
-        height: 146px;
+      .avatar-wrap {
+        width: 105px;
+        height: 105px;
       }
 
-      .social-card {
-        min-height: 87px;
+      .title {
+        font-size: 28px;
       }
 
-      .platform-icon {
-        width: 57px;
-        height: 57px;
-
-        flex-basis: 57px;
+      .followers-box {
+        padding: 16px;
+        border-radius: 20px;
       }
 
+      .followers-number {
+        font-size: 27px;
+      }
+
+      .link-card {
+        min-height: 74px;
+        border-radius: 20px;
+        padding: 12px 13px;
+      }
+
+      .icon-box {
+        width: 47px;
+        height: 47px;
+        flex-basis: 47px;
+        border-radius: 15px;
+      }
+
+      .icon-box img {
+        width: 27px;
+        height: 27px;
+      }
+
+      .link-content {
+        padding: 0 11px;
+      }
+
+      .link-title {
+        font-size: 15px;
+      }
+
+      .arrow {
+        width: 31px;
+        height: 31px;
+        flex-basis: 31px;
+      }
     }
 
-
-    /* =========================
-       REDUCE MOTION
-    ========================== */
-
+    /* تقليل الحركات عند طلب النظام ذلك */
     @media (prefers-reduced-motion: reduce) {
-
       *,
       *::before,
       *::after {
@@ -1285,18 +807,123 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
       }
-
     }
-
   </style>
 </head>
 
-
 <body>
 
-  <div class="page">
+  <!-- الخلفية -->
+  <div class="background" aria-hidden="true">
+    <div class="glow-one"></div>
+    <div class="glow-two"></div>
+  </div>
 
-    <!-- الخلفية مأخوذة من صورة القناة -->
-    <div
-      class="ambient-bg"
-      id="a
+  <!-- الصفحة -->
+  <main class="page">
+
+    <!-- الحساب -->
+    <section class="profile">
+
+      <div class="avatar-wrap">
+        <div class="avatar-ring"></div>
+
+        <div class="avatar-inner">
+          <img
+            class="avatar"
+            src="https://unavatar.io/youtube/waledyt1m"
+            alt="WALED YT"
+            referrerpolicy="no-referrer"
+            onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect width=%22200%22 height=%22200%22 rx=%22100%22 fill=%22%230b0b0b%22/%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%2270%22 fill=%22%23161616%22 stroke=%2200ff88%22 stroke-width=%224%22/%3E%3Ctext x=%22100%22 y=%22113%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2252%22 font-weight=%22900%22 fill=%22white%22%3EW%3C/text%3E%3C/svg%3E';"
+          />
+        </div>
+      </div>
+
+      <h1 class="title">WALED YT</h1>
+
+      <div class="username">@waledyt1m</div>
+
+      <p class="bio">
+        أهلاً بك في روابطي الرسمية 👑
+      </p>
+
+    </section>
+
+    <!-- إجمالي المتابعين -->
+    <section class="followers-box">
+
+      <div class="followers-label">إجمالي المتابعين</div>
+
+      <div class="followers-number">1,705</div>
+
+      <div class="auto-status">
+        <span class="auto-dot"></span>
+        <span>يتم تحديث المعلومات تلقائيًا</span>
+      </div>
+
+    </section>
+
+    <!-- الروابط -->
+    <section class="links">
+
+      <!-- YouTube -->
+      <a
+        class="link-card"
+        href="https://youtube.com/@waledyt1m?si=EUTLyYKOCwkbJurZ"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="YouTube - WALED YT"
+      >
+        <div class="icon-box">
+          <img
+            src="https://cdn.simpleicons.org/youtube/FF0000"
+            alt="YouTube"
+          />
+        </div>
+
+        <div class="link-content">
+          <h2 class="link-title">YouTube</h2>
+          <p class="link-subtitle">@waledyt1m</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M9 5L16 12L9 19"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+      </a>
+
+      <!-- Instagram -->
+      <a
+        class="link-card"
+        href="https://www.instagram.com/waled_yt_m1?igsh=NHJiaHEzNmUzZTVw"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram - WALED YT"
+      >
+        <div class="icon-box">
+          <img
+            src="https://cdn.simpleicons.org/instagram/E4405F"
+            alt="Instagram"
+          />
+        </div>
+
+        <div class="link-content">
+          <h2 class="link-title">Instagram</h2>
+          <p class="link-subtitle">@waled_yt_m1</p>
+        </div>
+
+        <div class="arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M9 5L16 12L9 19"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+       
