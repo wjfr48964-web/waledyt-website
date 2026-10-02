@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>WALED YT</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top, #202020 0%, #0b0b0b 45%, #050505 100%);
+      color: white;
+      display: flex;
+      justify-content: center;
+      padding: 25px 15px 40px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+    }
+
+    /* الشعار */
+    .logo-area {
+      text-align: center;
+      margin-top: 15px;
+      margin-bottom: 25px;
+    }
+
+    .logo {
+      width: 105px;
+      height: 105px;
+      border-radius: 50%;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #111;
+      border: 2px solid #333;
+      box-shadow:
+        0 0 25px rgba(255,255,255,0.08),
+        inset 0 0 20px rgba(255,255,255,0.04);
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .name {
+      margin-top: 13px;
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .username {
+      color: #888;
+      margin-top: 5px;
+      font-size: 14px;
+      direction: ltr;
+    }
+
+    /* بطاقة المتابعين */
+    .followers-card {
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 24px;
+      padding: 24px 18px;
+      text-align: center;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.35);
+      backdrop-filter: blur(12px);
+    }
+
+    .followers-title {
+      color: #aaa;
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .followers-number {
+      font-size: 48px;
+      font-weight: 900;
+      direction: ltr;
+      letter-spacing: 1px;
+    }
+
+    .update-status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      color: #aaa;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+
+    .green-dot {
+      width: 9px;
+      height: 9px;
+      background: #19e66b;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #19e66b;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: .45;
+        transform: scale(.75);
+      }
+    }
+
+    /* زر المنصات */
+    .section-title {
+      margin: 28px 5px 12px;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .platforms {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .platform {
+      text-decoration: none;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: .2s;
+    }
+
+    .platform:active {
+      transform: scale(.97);
+    }
+
+    .platform-right {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .icon {
+      width: 43px;
+      height: 43px;
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 18px;
+      background: #181818;
+    }
+
+    .platform-name {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .platform-user {
+      color: #888;
+      font-size: 12px;
+      margin-top: 3px;
+      direction: ltr;
+      text-align: right;
+    }
+
+    .arrow {
+      color: #777;
+      font-size: 20px;
+    }
+
+    /* حالة اللايف */
+    .live-box {
+      display: none;
+      margin-bottom: 14px;
+      border-radius: 20px;
+      padding: 17px;
+      background: rgba(255, 30, 30, 0.08);
+      border: 1px solid rgba(255, 40, 40, 0.35);
+      text-decoration: none;
+      color: white;
+    }
+
+    .live-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .live-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .live-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 13px;
+      background: #1b1b1b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .live-text {
+      font-weight: bold;
+    }
+
+    .live-small {
+      color: #999;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .live-badge {
+      background: #ff2020;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 900;
+      animation: livePulse 1.3s infinite;
+    }
+
+    @keyframes livePulse {
+      0%,100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: .55;
+      }
+    }
+
+    .footer {
+      text-align: center;
+      color: #555;
+      font-size: 12px;
+      margin-top: 30px;
+    }
+
+    @media (min-width: 600px) {
+      body {
+        padding-top: 50px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <!-- الشعار -->
+    <div class="logo-area">
+      <div class="logo">
+        WALED<br>YT
+      </div>
+
+      <div class="name">WALED YT</div>
+      <div class="username">@waledyt1m</div>
+    </div>
+
+    <!-- إجمالي المتابعين -->
+    <section class="followers-card">
+
+      <div class="followers-title">
+        إجمالي المتابعين
+      </div>
+
+      <div class="followers-number" id="followers">
+        1,705
+      </div>
+
+      <div class="update-status">
+        <span class="green-dot"></span>
+        <span>يتم التحديث تلقائيًا</span>
+      </div>
+
+    </section>
+
+    <!-- اللايف -->
+    <a
+      id="liveBox"
+      class="live-box"
+      href="https://kick.com/waledyt1m"
+      target="_blank"
+    >
+
+      <div class="live-content">
+
+        <div class="live-left">
+
+          <div class="live-icon">
+            🟢
+          </div>
+
+          <div>
+            <div class="live-text">
+              WALED YT على الهواء
+            </div>
+
+            <div class="live-small">
+              شاهد البث المباشر على Kick
+            </div>
+          </div>
+
+        </div>
+
+        <div class="live-badge">
+          LIVE
+        </div>
+
+      </div>
+
+    </a>
+
+    <!-- المنصات -->
+    <div class="section-title">
+      منصاتي
+    </div>
+
+    <div class="platforms">
+
+      <!-- YouTube -->
+      <a
+        class="platform"
+        href="https://youtube.com/@waledyt1m"
+        target="_blank"
+      >
+
+        <div class="platform-right">
+
+          <div class="icon">
+            ▶
+          </div>
+
+          <div>
+            <div class="platform-name">
+              YouTube
+            </div>
+
+            <div class="platform-user">
+              @waledyt1m
+            </div>
+          </div>
+
+        </div>
+
+        <div class="arrow">
+          ‹
+        </div>
+
+      </a>
+
+
+      <!-- Instagram -->
+      <a
+        class="platform"
+        href="https://www.instagram.com/waled_yt_m1"
+        target="_blank"
+      >
+
+        <div class="platform-right">
+
+          <div class="icon">
+            ◎
+          </div>
+
+          <div>
+            <div class="platform-name">
+              Instagram
+            </div>
+
+            <div class="platform-user">
+              @waled_yt_m1
+            </div>
+          </div>
+
+        </div>
+
+        <div class="arrow">
+          ‹
+        </div>
+
+      </a>
+
+
+      <!-- TikTok -->
+      <a
+        class="platform"
+        href="https://www.tiktok.com/@waled_yt"
+        target="_blank"
+      >
+
+        <div class="platform-right">
+
+          <div class="icon">
+            ♪
+          </div>
+
+          <div>
+            <div class="platform-name">
+              TikTok
+            </div>
+
+            <div class="platform-user">
+              @waled_yt
+            </div>
+          </div>
+
+        </div>
+
+        <div class="arrow">
+          ‹
+        </div>
+
+      </a>
+
+
+      <!-- Facebook -->
+      <a
+        class="platform"
+        href="https://www.facebook.com/share/1DjexJmpXv/"
+        target="_blank"
+      >
+
+        <div class="platform-right">
+
+          <div class="icon">
+            f
+          </div>
+
+          <div>
+            <div class="platform-name">
+              Facebook
+            </div>
+
+            <div class="platform-user">
+              WALED YT
+            </div>
+          </div>
+
+        </div>
+
+        <div class="arrow">
+          ‹
+        </div>
+
+      </a>
+
+
+      <!-- Kick -->
+      <a
+        class="platform"
+        href="https://kick.com/waledyt1m"
+        target="_blank"
+      >
+
+        <div class="platform-right">
+
+          <div class="icon">
+            K
+          </div>
+
+          <div>
+            <div class="platform-name">
+              Kick
+            </div>
+
+            <div class="platform-user">
+              waledyt1m
+            </div>
+          </div>
+
+        </div>
+
+        <div class="arrow">
+          ‹
+        </div>
+
+      </a>
+
+    </div>
+
+    <div class="footer">
+      © 2026 WALED YT
+    </div>
+
+  </main>
+
+
+  <script>
+
+    /*
+      الرقم الحالي لإجمالي المتابعين.
+
+      في النسخة القادمة سنربطه بمصدر بيانات
+      حتى لا نحتاج إلى تغييره يدويًا.
+    */
+
+    const totalFollowers = 1705;
+
+    document.getElementById("followers").textContent =
+      totalFollowers.toLocaleString("en-US");
+
+
+    /*
+      نظام LIVE مؤقت.
+
+      عندما نربط API الخاص بـ Kick في المرحلة القادمة،
+      سيتم تشغيل هذا الصندوق تلقائيًا عندما يبدأ البث.
+    */
+
+    const isLive = false;
+
+    if (isLive) {
+      document.getElementById("liveBox").style.display = "block";
+    }
+
+  </script>
+
+</body>
+  </html>
+  
