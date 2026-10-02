@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#050505" />
-  <meta name="description" content="WALED YT - جميع روابط وحسابات وليد" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#07120d">
+  <meta name="description" content="WALED YT - جميع الحسابات الرسمية في مكان واحد.">
   <title>WALED YT</title>
 
   <style>
     * {
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
+      margin: 0;
+      padding: 0;
     }
 
     html {
@@ -18,794 +19,638 @@
     }
 
     body {
-      margin: 0;
       min-height: 100vh;
+      background: #050807;
+      color: #ffffff;
       font-family:
-        "Cairo",
-        "Tajawal",
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
         "Segoe UI",
+        Tahoma,
         Arial,
         sans-serif;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(24, 255, 145, 0.08), transparent 30%),
-        radial-gradient(circle at 0% 80%, rgba(0, 255, 128, 0.045), transparent 28%),
-        #050505;
-      color: #fff;
       overflow-x: hidden;
     }
 
-    button,
     a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
       font: inherit;
     }
 
-    /* ---------------------------
-       الخلفية
-    ---------------------------- */
-
-    .background {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .background::before {
-      content: "";
-      position: absolute;
-      width: 420px;
-      height: 420px;
-      left: 50%;
-      top: -180px;
-      transform: translateX(-50%);
-      background: rgba(0, 255, 132, 0.11);
-      filter: blur(120px);
-      border-radius: 50%;
-    }
-
-    .background::after {
-      content: "";
-      position: absolute;
-      width: 330px;
-      height: 330px;
-      right: -100px;
-      bottom: 10%;
-      background: rgba(0, 220, 110, 0.06);
-      filter: blur(110px);
-      border-radius: 50%;
-    }
-
-    .glow-one,
-    .glow-two {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(110px);
-      opacity: 0.45;
-    }
-
-    .glow-one {
-      width: 220px;
-      height: 220px;
-      left: -100px;
-      top: 35%;
-      background: rgba(0, 255, 140, 0.05);
-    }
-
-    .glow-two {
-      width: 260px;
-      height: 260px;
-      right: -120px;
-      top: 55%;
-      background: rgba(0, 255, 140, 0.045);
-    }
-
-    /* ---------------------------
-       الحاوية
-    ---------------------------- */
-
     .page {
       position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 620px;
-      margin: 0 auto;
-      padding: 55px 18px 45px;
+      min-height: 100vh;
+      isolation: isolate;
+      overflow: hidden;
     }
 
-    /* ---------------------------
-       الرأس / الصورة
-    ---------------------------- */
+    .page::before,
+    .page::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.22;
+      pointer-events: none;
+      z-index: -2;
+    }
 
-    .profile {
+    .page::before {
+      width: 300px;
+      height: 300px;
+      background: #16a34a;
+      top: -100px;
+      right: -100px;
+    }
+
+    .page::after {
+      width: 340px;
+      height: 340px;
+      background: #0ea5e9;
+      left: -150px;
+      bottom: -100px;
+    }
+
+    .grid {
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      opacity: 0.11;
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,0.06) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,0.06) 1px,
+          transparent 1px
+        );
+      background-size: 42px 42px;
+      mask-image:
+        linear-gradient(
+          to bottom,
+          transparent,
+          black 18%,
+          black 82%,
+          transparent
+        );
+    }
+
+    .container {
+      width: min(680px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 28px 0 42px;
+    }
+
+    /* TOP */
+
+    .topbar {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .top-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.09);
+      display: grid;
+      place-items: center;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 34px rgba(0,0,0,0.24);
+    }
+
+    .top-mark span {
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: -0.3px;
+    }
+
+    /* HERO */
+
+    .hero {
       text-align: center;
-      margin-bottom: 30px;
+      padding: 8px 0 24px;
     }
 
     .avatar-wrap {
       position: relative;
-      width: 116px;
-      height: 116px;
-      margin: 0 auto 18px;
+      width: 122px;
+      height: 122px;
+      margin: 0 auto 20px;
     }
 
     .avatar-ring {
       position: absolute;
-      inset: -4px;
+      inset: -5px;
       border-radius: 50%;
-      background: conic-gradient(
-        from 0deg,
-        #00ff88,
-        rgba(0, 255, 136, 0.12),
-        #00ff88,
-        rgba(0, 255, 136, 0.12),
-        #00ff88
-      );
-      animation: rotateRing 7s linear infinite;
-      filter: drop-shadow(0 0 12px rgba(0, 255, 136, 0.35));
-    }
-
-    .avatar-inner {
-      position: absolute;
-      inset: 4px;
-      border-radius: 50%;
-      background: #0a0a0a;
-      padding: 4px;
-      z-index: 2;
+      padding: 2px;
+      background:
+        linear-gradient(
+          140deg,
+          #22c55e,
+          #14b8a6,
+          #0ea5e9
+        );
+      box-shadow:
+        0 0 44px rgba(34,197,94,0.18);
     }
 
     .avatar {
+      position: relative;
       width: 100%;
       height: 100%;
-      display: block;
       border-radius: 50%;
       object-fit: cover;
-      background: linear-gradient(145deg, #101010, #080808);
+      display: block;
+      background: #101512;
+      border: 4px solid #06100b;
     }
 
-    .avatar-wrap::after {
-      content: "";
+    .online-dot {
       position: absolute;
-      width: 17px;
-      height: 17px;
-      right: 2px;
-      bottom: 8px;
-      border: 3px solid #050505;
+      right: 1px;
+      bottom: 7px;
+      width: 23px;
+      height: 23px;
       border-radius: 50%;
-      background: #00f286;
+      background: #22c55e;
+      border: 4px solid #06100b;
       box-shadow:
-        0 0 0 4px rgba(0, 242, 134, 0.08),
-        0 0 16px rgba(0, 242, 134, 0.65);
-      z-index: 4;
-      animation: onlinePulse 2s ease-in-out infinite;
-    }
-
-    @keyframes rotateRing {
-      to {
-        transform: rotate(360deg);
-      }
+        0 0 0 5px rgba(34,197,94,0.10),
+        0 0 22px rgba(34,197,94,0.65);
+      animation: onlinePulse 1.8s infinite;
     }
 
     @keyframes onlinePulse {
-      0%, 100% {
+      0% {
         box-shadow:
-          0 0 0 4px rgba(0, 242, 134, 0.08),
-          0 0 16px rgba(0, 242, 134, 0.55);
+          0 0 0 0 rgba(34,197,94,0.48),
+          0 0 22px rgba(34,197,94,0.65);
       }
 
-      50% {
+      70% {
         box-shadow:
-          0 0 0 7px rgba(0, 242, 134, 0.03),
-          0 0 24px rgba(0, 242, 134, 0.9);
+          0 0 0 9px rgba(34,197,94,0),
+          0 0 22px rgba(34,197,94,0.65);
+      }
+
+      100% {
+        box-shadow:
+          0 0 0 0 rgba(34,197,94,0),
+          0 0 22px rgba(34,197,94,0.65);
       }
     }
 
-    .title {
-      margin: 0;
-      font-size: 31px;
-      font-weight: 900;
-      letter-spacing: 0.5px;
-      color: #fff;
+    h1 {
+      font-size: clamp(32px, 7vw, 50px);
+      line-height: 1;
+      font-weight: 950;
+      letter-spacing: -1.8px;
     }
 
-    .username {
-      margin: 4px 0 0;
+    .handle {
+      margin-top: 10px;
       font-size: 15px;
-      font-weight: 600;
-      color: #8f8f8f;
+      color: #9aa5a0;
       direction: ltr;
     }
 
-    .bio {
-      max-width: 430px;
-      margin: 12px auto 0;
-      color: #bcbcbc;
-      line-height: 1.8;
-      font-size: 14px;
-    }
+    /* STATS */
 
-    /* ---------------------------
-       إجمالي المتابعين
-    ---------------------------- */
-
-    .followers-box {
-      position: relative;
-      margin: 26px auto 14px;
-      padding: 18px 20px;
-      border-radius: 22px;
-      border: 1px solid rgba(255, 255, 255, 0.07);
+    .stats {
+      margin: 24px auto 0;
+      max-width: 420px;
+      padding: 19px 20px;
+      border: 1px solid rgba(255,255,255,0.08);
       background:
         linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.045),
-          rgba(255, 255, 255, 0.018)
+          180deg,
+          rgba(255,255,255,0.065),
+          rgba(255,255,255,0.028)
         );
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.04),
-        0 18px 50px rgba(0, 0, 0, 0.22);
-      overflow: hidden;
+      border-radius: 24px;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.28);
+      backdrop-filter: blur(18px);
     }
 
-    .followers-box::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(
-          120deg,
-          transparent 20%,
-          rgba(0, 255, 136, 0.05),
-          transparent 70%
-        );
-      transform: translateX(100%);
-      animation: boxShine 6s ease-in-out infinite;
-    }
-
-    @keyframes boxShine {
-      0%, 65%, 100% {
-        transform: translateX(100%);
-      }
-
-      82% {
-        transform: translateX(-100%);
-      }
-    }
-
-    .followers-label {
-      position: relative;
-      color: #8e8e8e;
+    .stats-label {
       font-size: 13px;
-      margin-bottom: 5px;
+      color: #8d9993;
+      margin-bottom: 7px;
     }
 
-    .followers-number {
-      position: relative;
-      font-size: 30px;
-      font-weight: 900;
+    .count {
+      font-size: clamp(32px, 8vw, 48px);
+      font-weight: 950;
+      letter-spacing: -1px;
+      font-variant-numeric: tabular-nums;
       direction: ltr;
-      letter-spacing: 1px;
     }
 
-    .auto-status {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+    .count-word {
+      font-size: 15px;
+      color: #b5bdb9;
+      margin-right: 7px;
+      font-weight: 700;
+    }
+
+    .update-status {
       margin-top: 9px;
-      color: #8f8f8f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #9da8a3;
       font-size: 12px;
     }
 
-    .auto-dot {
-      width: 7px;
-      height: 7px;
+    .pulse {
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      background: #00ee83;
-      box-shadow: 0 0 12px rgba(0, 238, 131, 0.65);
+      background: #22c55e;
+      box-shadow: 0 0 0 0 rgba(34,197,94,0.55);
+      animation: pulseDot 1.8s infinite;
     }
 
-    /* ---------------------------
-       الروابط
-    ---------------------------- */
+    @keyframes pulseDot {
+      0% {
+        box-shadow: 0 0 0 0 rgba(34,197,94,0.50);
+      }
 
-    .links {
+      70% {
+        box-shadow: 0 0 0 9px rgba(34,197,94,0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(34,197,94,0);
+      }
+    }
+
+    /* LIVE */
+
+    .live-area {
+      margin: 12px 0 18px;
+    }
+
+    .live-card {
+      display: none;
+      position: relative;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 15px;
+      border-radius: 24px;
+      background:
+        linear-gradient(
+          120deg,
+          rgba(255,38,38,0.15),
+          rgba(255,255,255,0.045)
+        );
+      border: 1px solid rgba(255,75,75,0.26);
+      box-shadow: 0 14px 40px rgba(255,0,0,0.08);
+      overflow: hidden;
+    }
+
+    .live-card.show {
+      display: flex;
+    }
+
+    .live-glow {
+      position: absolute;
+      right: -35px;
+      bottom: -45px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: rgba(255,0,0,0.15);
+      filter: blur(38px);
+    }
+
+    .live-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 17px;
+      background: #0d0d0d;
+      border: 1px solid rgba(255,255,255,0.10);
+      display: grid;
+      place-items: center;
+      flex: 0 0 54px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .live-icon img {
+      width: 28px;
+      height: 28px;
+    }
+
+    .live-text {
+      min-width: 0;
+      position: relative;
+      z-index: 1;
+      text-align: right;
+    }
+
+    .live-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 900;
+      font-size: 16px;
+      flex-wrap: wrap;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ef2b2d;
+      color: #fff;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: 0.3px;
+    }
+
+    .live-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 8px rgba(255,255,255,0.85);
+    }
+
+    .live-sub {
+      color: #a7afab;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .live-arrow {
+      margin-inline-start: auto;
+      position: relative;
+      z-index: 1;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      flex: 0 0 38px;
+    }
+
+    /* SECTION */
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 26px 4px 12px;
+    }
+
+    .section-title h2 {
+      font-size: 15px;
+      font-weight: 900;
+      color: #e8ecea;
+    }
+
+    .section-title span {
+      font-size: 11px;
+      color: #77817d;
+    }
+
+    /* SOCIAL CARDS */
+
+    .socials {
       display: flex;
       flex-direction: column;
-      gap: 13px;
-      margin-top: 22px;
+      gap: 11px;
     }
 
-    .link-card {
-      --mx: 50%;
-      --my: 50%;
-
+    .social-card {
       position: relative;
       display: flex;
       align-items: center;
-      min-height: 78px;
-      padding: 13px 16px;
-      border: 1px solid rgba(255, 255, 255, 0.085);
-      border-radius: 22px;
+      gap: 14px;
+      min-height: 80px;
+      padding: 13px 14px;
+      border-radius: 23px;
       background:
         linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.065),
-          rgba(255, 255, 255, 0.026)
+          180deg,
+          rgba(255,255,255,0.055),
+          rgba(255,255,255,0.028)
         );
-      box-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.22),
-        inset 0 1px 0 rgba(255, 255, 255, 0.035);
-      text-decoration: none;
-      color: white;
-      overflow: hidden;
-      isolation: isolate;
-      transform: translateZ(0);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 12px 38px rgba(0,0,0,0.19);
+      backdrop-filter: blur(16px);
       transition:
-        transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
-        border-color 0.22s ease,
-        box-shadow 0.22s ease,
-        background 0.22s ease;
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
     }
 
-    /* الإضاءة التي تتبع مكان اللمس */
-    .link-card::before {
-      content: "";
-      position: absolute;
-      left: var(--mx);
-      top: var(--my);
-      width: 150px;
-      height: 150px;
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      background: radial-gradient(
-        circle,
-        rgba(0, 255, 136, 0.13) 0%,
-        rgba(0, 255, 136, 0.055) 35%,
-        transparent 72%
-      );
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* لمعة تمر عبر البطاقة */
-    .link-card::after {
-      content: "";
-      position: absolute;
-      top: -40%;
-      left: -70%;
-      width: 45%;
-      height: 180%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.12),
-        transparent
-      );
-      transform: rotate(16deg);
-      opacity: 0;
-      pointer-events: none;
-      z-index: 3;
-    }
-
-    .link-card:hover {
-      transform: translateY(-3px) scale(1.012);
-      border-color: rgba(0, 255, 136, 0.24);
-      box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.30),
-        0 0 0 1px rgba(0, 255, 136, 0.04),
-        0 0 25px rgba(0, 255, 136, 0.055);
-    }
-
-    .link-card:hover::before {
-      opacity: 1;
-    }
-
-    .link-card:hover::after {
-      animation: shineSweep 0.75s ease forwards;
-    }
-
-    @keyframes shineSweep {
-      0% {
-        left: -70%;
-        opacity: 0;
-      }
-
-      15% {
-        opacity: 1;
-      }
-
-      100% {
-        left: 145%;
-        opacity: 0;
-      }
-    }
-
-    /* الضغط */
-    .link-card.pressed {
-      transform: scale(0.945);
-      border-color: rgba(0, 255, 136, 0.62);
+    .social-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.15);
       background:
         linear-gradient(
-          135deg,
-          rgba(0, 255, 136, 0.115),
-          rgba(255, 255, 255, 0.035)
+          180deg,
+          rgba(255,255,255,0.075),
+          rgba(255,255,255,0.035)
         );
-      box-shadow:
-        0 4px 18px rgba(0, 0, 0, 0.38),
-        0 0 0 1px rgba(0, 255, 136, 0.17),
-        0 0 32px rgba(0, 255, 136, 0.18);
     }
 
-    .link-card.pressed::before {
-      opacity: 1;
-      width: 280px;
-      height: 280px;
+    .social-card:active {
+      transform: scale(0.985);
     }
-
-    .link-card.pressed::after {
-      animation: pressFlash 0.55s ease forwards;
-    }
-
-    @keyframes pressFlash {
-      0% {
-        left: -75%;
-        opacity: 0;
-      }
-
-      15% {
-        opacity: 1;
-      }
-
-      100% {
-        left: 155%;
-        opacity: 0;
-      }
-    }
-
-    /* ---------------------------
-       الأيقونة
-    ---------------------------- */
 
     .icon-box {
-      flex: 0 0 50px;
-      width: 50px;
-      height: 50px;
+      width: 54px;
+      height: 54px;
+      border-radius: 17px;
       display: grid;
       place-items: center;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.055);
-      border: 1px solid rgba(255, 255, 255, 0.065);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.04),
-        0 7px 20px rgba(0, 0, 0, 0.14);
-      transition:
-        transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
-        background 0.25s ease,
-        box-shadow 0.25s ease;
-      overflow: hidden;
+      flex: 0 0 54px;
+      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255,255,255,0.06);
     }
 
     .icon-box img {
       width: 29px;
       height: 29px;
       object-fit: contain;
-      display: block;
     }
 
-    .link-card:hover .icon-box {
-      transform: scale(1.08) rotate(-2deg);
-      background: rgba(255, 255, 255, 0.08);
-      box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.05),
-        0 0 20px rgba(0, 255, 136, 0.08);
-    }
-
-    .link-card.pressed .icon-box {
-      transform: scale(0.88) rotate(3deg);
-    }
-
-    /* ---------------------------
-       النص
-    ---------------------------- */
-
-    .link-content {
+    .info {
       min-width: 0;
-      flex: 1;
-      padding: 0 14px;
+      text-align: right;
     }
 
-    .link-title {
-      margin: 0;
-      font-size: 16px;
-      font-weight: 800;
-      line-height: 1.35;
+    .platform {
+      display: block;
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.2;
     }
 
-    .link-subtitle {
-      margin: 4px 0 0;
-      color: #888;
+    .username {
+      display: block;
       font-size: 12px;
-      line-height: 1.4;
+      color: #929d98;
+      margin-top: 5px;
       direction: ltr;
       text-align: right;
+      unicode-bidi: plaintext;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    /* ---------------------------
-       السهم
-    ---------------------------- */
-
-    .arrow {
-      flex: 0 0 34px;
-      width: 34px;
-      height: 34px;
+    .open {
+      margin-inline-start: auto;
+      width: 40px;
+      height: 40px;
+      border-radius: 13px;
+      background: rgba(255,255,255,0.065);
       display: grid;
       place-items: center;
-      border-radius: 11px;
-      color: #888;
-      background: rgba(255, 255, 255, 0.035);
+      color: #a8b0ad;
+      font-size: 18px;
+      flex: 0 0 40px;
       transition:
-        transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
-        color 0.2s ease,
-        background 0.2s ease;
+        background 0.18s ease,
+        color 0.18s ease;
     }
 
-    .arrow svg {
-      width: 17px;
-      height: 17px;
-      transition: transform 0.25s ease;
-    }
-
-    .link-card:hover .arrow {
+    .social-card:hover .open {
+      background: rgba(255,255,255,0.11);
       color: #fff;
-      background: rgba(0, 255, 136, 0.08);
-      transform: translateX(-3px);
     }
 
-    .link-card:hover .arrow svg {
-      transform: translateX(-2px);
+    .youtube .icon-box {
+      background: rgba(255,0,0,0.11);
+      border-color: rgba(255,0,0,0.15);
     }
 
-    .link-card.pressed .arrow {
-      color: #00ff88;
-      transform: scale(0.9);
+    .instagram .icon-box {
+      background: rgba(225,48,108,0.10);
+      border-color: rgba(225,48,108,0.14);
     }
 
-    /* ---------------------------
-       Ripple
-    ---------------------------- */
+    .tiktok .icon-box {
+      background: rgba(255,255,255,0.085);
+    }
 
-    .ripple {
+    .facebook .icon-box {
+      background: rgba(24,119,242,0.11);
+      border-color: rgba(24,119,242,0.16);
+    }
+
+    .kick .icon-box {
+      background: rgba(83,246,136,0.085);
+      border-color: rgba(83,246,136,0.15);
+    }
+
+    .live-strip {
       position: absolute;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      pointer-events: none;
-      background: rgba(255, 255, 255, 0.34);
-      transform: translate(-50%, -50%) scale(0);
-      animation: rippleEffect 0.65s cubic-bezier(0.15, 0.75, 0.25, 1) forwards;
-      z-index: 5;
+      top: 10px;
+      left: 10px;
+      display: none;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #ef2b2d;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 950;
     }
 
-    @keyframes rippleEffect {
-      0% {
-        transform: translate(-50%, -50%) scale(0);
-        opacity: 0.65;
-      }
-
-      60% {
-        opacity: 0.2;
-      }
-
-      100% {
-        transform: translate(-50%, -50%) scale(24);
-        opacity: 0;
-      }
+    .social-card.is-live {
+      border-color: rgba(239,43,45,0.28);
+      background:
+        linear-gradient(
+          180deg,
+          rgba(239,43,45,0.09),
+          rgba(255,255,255,0.028)
+        );
     }
 
-    /* ---------------------------
-       الفوتر
-    ---------------------------- */
+    .social-card.is-live .live-strip {
+      display: block;
+    }
 
-    .footer {
+    /* FOOTER */
+
+    footer {
       text-align: center;
-      margin-top: 28px;
-      padding-top: 8px;
-      color: #676767;
-      font-size: 12px;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      color: #69736e;
+      font-size: 11px;
+      line-height: 1.8;
     }
 
-    .footer strong {
-      color: #989898;
+    .brand-footer {
       font-weight: 800;
+      color: #909994;
     }
 
-    /* ---------------------------
-       انتقال الصفحة
-    ---------------------------- */
-
-    .page-transition {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(3, 3, 3, 0.56);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      opacity: 0;
-      visibility: hidden;
-      transition:
-        opacity 0.22s ease,
-        visibility 0.22s ease;
-      z-index: 9999;
-      pointer-events: none;
+    .noscript {
+      margin: 20px 0;
+      padding: 14px;
+      border-radius: 16px;
+      background: #171c1a;
+      color: #cbd3cf;
+      font-size: 13px;
+      text-align: center;
     }
 
-    .page-transition.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .transition-ring {
-      position: relative;
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      border: 2px solid rgba(0, 255, 136, 0.13);
-    }
-
-    .transition-ring::before {
-      content: "";
-      position: absolute;
-      inset: 7px;
-      border-radius: 50%;
-      border: 2px solid transparent;
-      border-top-color: #00ff88;
-      border-right-color: rgba(0, 255, 136, 0.35);
-      animation: transitionSpin 0.7s linear infinite;
-    }
-
-    .transition-ring::after {
-      content: "W";
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      font-size: 19px;
-      font-weight: 900;
-      color: #fff;
-      text-shadow: 0 0 18px rgba(0, 255, 136, 0.45);
-    }
-
-    @keyframes transitionSpin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    /* ---------------------------
-       دخول العناصر
-    ---------------------------- */
-
-    .profile,
-    .followers-box,
-    .link-card {
-      animation: pageEnter 0.65s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-    }
-
-    .followers-box {
-      animation-delay: 0.08s;
-    }
-
-    .link-card:nth-child(1) {
-      animation-delay: 0.13s;
-    }
-
-    .link-card:nth-child(2) {
-      animation-delay: 0.18s;
-    }
-
-    .link-card:nth-child(3) {
-      animation-delay: 0.23s;
-    }
-
-    .link-card:nth-child(4) {
-      animation-delay: 0.28s;
-    }
-
-    .link-card:nth-child(5) {
-      animation-delay: 0.33s;
-    }
-
-    .link-card:nth-child(6) {
-      animation-delay: 0.38s;
-    }
-
-    @keyframes pageEnter {
-      from {
-        opacity: 0;
-        transform: translateY(18px) scale(0.98);
+    @media (min-width: 700px) {
+      .container {
+        padding-top: 38px;
       }
 
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    /* ---------------------------
-       الهاتف
-    ---------------------------- */
-
-    @media (max-width: 480px) {
-      .page {
-        padding: 38px 14px 32px;
-      }
-
-      .avatar-wrap {
-        width: 105px;
-        height: 105px;
-      }
-
-      .title {
-        font-size: 28px;
-      }
-
-      .followers-box {
-        padding: 16px;
-        border-radius: 20px;
-      }
-
-      .followers-number {
-        font-size: 27px;
-      }
-
-      .link-card {
-        min-height: 74px;
-        border-radius: 20px;
-        padding: 12px 13px;
+      .social-card {
+        min-height: 86px;
       }
 
       .icon-box {
-        width: 47px;
-        height: 47px;
-        flex-basis: 47px;
-        border-radius: 15px;
+        width: 56px;
+        height: 56px;
+        flex-basis: 56px;
       }
 
-      .icon-box img {
-        width: 27px;
-        height: 27px;
+      .open {
+        width: 42px;
+        height: 42px;
+        flex-basis: 42px;
       }
 
-      .link-content {
-        padding: 0 11px;
-      }
-
-      .link-title {
-        font-size: 15px;
-      }
-
-      .arrow {
-        width: 31px;
-        height: 31px;
-        flex-basis: 31px;
+      .avatar-wrap {
+        width: 132px;
+        height: 132px;
       }
     }
 
-    /* تقليل الحركات عند طلب النظام ذلك */
     @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+      * {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
       }
     }
   </style>
@@ -813,117 +658,678 @@
 
 <body>
 
-  <!-- الخلفية -->
-  <div class="background" aria-hidden="true">
-    <div class="glow-one"></div>
-    <div class="glow-two"></div>
-  </div>
+  <div class="page">
+    <div class="grid"></div>
 
-  <!-- الصفحة -->
-  <main class="page">
+    <main class="container">
 
-    <!-- الحساب -->
-    <section class="profile">
+      <!-- TOP -->
+      <div class="topbar">
+        <div class="top-mark" aria-label="WALED YT">
+          <span>WYT</span>
+        </div>
+      </div>
 
-      <div class="avatar-wrap">
-        <div class="avatar-ring"></div>
+      <!-- PROFILE -->
+      <header class="hero">
 
-        <div class="avatar-inner">
+        <div class="avatar-wrap">
+
+          <div class="avatar-ring"></div>
+
           <img
             class="avatar"
             src="https://unavatar.io/youtube/waledyt1m"
             alt="WALED YT"
             referrerpolicy="no-referrer"
-            onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect width=%22200%22 height=%22200%22 rx=%22100%22 fill=%22%230b0b0b%22/%3E%3Ccircle cx=%22100%22 cy=%22100%22 r=%2270%22 fill=%22%23161616%22 stroke=%2200ff88%22 stroke-width=%224%22/%3E%3Ctext x=%22100%22 y=%22113%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2252%22 font-weight=%22900%22 fill=%22white%22%3EW%3C/text%3E%3C/svg%3E';"
-          />
+            onerror="
+              this.style.display='none';
+              this.parentElement.querySelector('.avatar-ring').style.background=
+              'linear-gradient(140deg,#22c55e,#14b8a6,#0ea5e9)';
+            "
+          >
+
+          <span class="online-dot" aria-hidden="true"></span>
+
         </div>
+
+        <h1>WALED YT</h1>
+
+        <div class="handle">@waledyt1m</div>
+
+        <!-- TOTAL FOLLOWERS -->
+        <div class="stats">
+
+          <div class="stats-label">
+            إجمالي المتابعين
+          </div>
+
+          <div>
+            <span class="count" id="totalFollowers">
+              1,705
+            </span>
+
+            <span class="count-word">
+              متابع
+            </span>
+          </div>
+
+          <div class="update-status">
+            <span class="pulse"></span>
+            <span id="updateText">
+              يتم التحديث تلقائيًا
+            </span>
+          </div>
+
+        </div>
+
+      </header>
+
+      <!-- KICK LIVE -->
+      <section
+        class="live-area"
+        id="liveArea"
+        aria-live="polite"
+      >
+
+        <a
+          class="live-card"
+          id="liveCard"
+          href="https://kick.com/waledyt1m"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <span class="live-glow"></span>
+
+          <span class="live-icon">
+            <img
+              src="https://cdn.simpleicons.org/kick/FFFFFF"
+              alt="Kick"
+            >
+          </span>
+
+          <span class="live-text">
+
+            <span class="live-title">
+              <span class="live-badge">
+                LIVE
+              </span>
+
+              <span>
+                WALED YT مباشر الآن
+              </span>
+            </span>
+
+            <span class="live-sub">
+              البث موجود حاليًا على Kick
+            </span>
+
+          </span>
+
+          <span
+            class="live-arrow"
+            aria-hidden="true"
+          >
+            ↗
+          </span>
+
+        </a>
+
+      </section>
+
+      <!-- SOCIAL TITLE -->
+      <div class="section-title">
+
+        <h2>
+          حساباتي الرسمية
+        </h2>
+
+        <span>
+          WALED YT
+        </span>
+
       </div>
 
-      <h1 class="title">WALED YT</h1>
-
-      <div class="username">@waledyt1m</div>
-
-      <p class="bio">
-        أهلاً بك في روابطي الرسمية 👑
-      </p>
-
-    </section>
-
-    <!-- إجمالي المتابعين -->
-    <section class="followers-box">
-
-      <div class="followers-label">إجمالي المتابعين</div>
-
-      <div class="followers-number">1,705</div>
-
-      <div class="auto-status">
-        <span class="auto-dot"></span>
-        <span>يتم تحديث المعلومات تلقائيًا</span>
-      </div>
-
-    </section>
-
-    <!-- الروابط -->
-    <section class="links">
-
-      <!-- YouTube -->
-      <a
-        class="link-card"
-        href="https://youtube.com/@waledyt1m?si=EUTLyYKOCwkbJurZ"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="YouTube - WALED YT"
+      <!-- SOCIALS -->
+      <section
+        class="socials"
+        id="socials"
       >
-        <div class="icon-box">
-          <img
-            src="https://cdn.simpleicons.org/youtube/FF0000"
-            alt="YouTube"
-          />
+
+        <!-- YOUTUBE -->
+        <a
+          class="social-card youtube"
+          href="https://youtube.com/@waledyt1m"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <span class="icon-box">
+            <img
+              src="https://cdn.simpleicons.org/youtube/FF0000"
+              alt="YouTube"
+            >
+          </span>
+
+          <span class="info">
+
+            <span class="platform">
+              YouTube
+            </span>
+
+            <span class="username">
+              @waledyt1m
+            </span>
+
+          </span>
+
+          <span
+            class="open"
+            aria-hidden="true"
+          >
+            ↗
+          </span>
+
+        </a>
+
+
+        <!-- INSTAGRAM -->
+        <a
+          class="social-card instagram"
+          href="https://www.instagram.com/waled_yt_m1/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <span class="icon-box">
+            <img
+              src="https://cdn.simpleicons.org/instagram/FFFFFF"
+              alt="Instagram"
+            >
+          </span>
+
+          <span class="info">
+
+            <span class="platform">
+              Instagram
+            </span>
+
+            <span class="username">
+              @waled_yt_m1
+            </span>
+
+          </span>
+
+          <span
+            class="open"
+            aria-hidden="true"
+          >
+            ↗
+          </span>
+
+        </a>
+
+
+        <!-- TIKTOK -->
+        <a
+          class="social-card tiktok"
+          href="https://www.tiktok.com/@waled_yt"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <span class="icon-box">
+            <img
+              src="https://cdn.simpleicons.org/tiktok/FFFFFF"
+              alt="TikTok"
+            >
+          </span>
+
+          <span class="info">
+
+            <span class="platform">
+              TikTok
+            </span>
+
+            <span class="username">
+              @waled_yt
+            </span>
+
+          </span>
+
+          <span
+            class="open"
+            aria-hidden="true"
+          >
+            ↗
+          </span>
+
+        </a>
+
+
+        <!-- FACEBOOK -->
+        <a
+          class="social-card facebook"
+          href="https://www.facebook.com/share/1DjexJmpXv/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <span class="icon-box">
+            <img
+              src="https://cdn.simpleicons.org/facebook/1877F2"
+              alt="Facebook"
+            >
+          </span>
+
+          <span class="info">
+
+            <span class="platform">
+              Facebook
+            </span>
+
+            <span class="username">
+              WALED YT
+            </span>
+
+          </span>
+
+          <span
+            class="open"
+            aria-hidden="true"
+          >
+            ↗
+          </span>
+
+        </a>
+
+
+        <!-- KICK -->
+        <a
+          class="social-card kick"
+          id="kickCard"
+          href="https://kick.com/waledyt1m"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <span class="live-strip">
+            LIVE
+          </span>
+
+          <span class="icon-box">
+            <img
+              src="https://cdn.simpleicons.org/kick/FFFFFF"
+              alt="Kick"
+            >
+          </span>
+
+          <span class="info">
+
+            <span class="platform">
+              Kick
+            </span>
+
+            <span class="username">
+              waledyt1m
+            </span>
+
+          </span>
+
+          <span
+            class="open"
+            aria-hidden="true"
+          >
+            ↗
+          </span>
+
+        </a>
+
+      </section>
+
+      <noscript>
+        <div class="noscript">
+          يرجى تفعيل JavaScript حتى تعمل حالة البث والتحديثات التلقائية.
+        </div>
+      </noscript>
+
+      <!-- FOOTER -->
+      <footer>
+
+        <div class="brand-footer">
+          WALED YT
         </div>
 
-        <div class="link-content">
-          <h2 class="link-title">YouTube</h2>
-          <p class="link-subtitle">@waledyt1m</p>
+        <div>
+          © 2026
         </div>
 
-        <div class="arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path
-              d="M9 5L16 12L9 19"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </div>
-      </a>
+      </footer>
 
-      <!-- Instagram -->
-      <a
-        class="link-card"
-        href="https://www.instagram.com/waled_yt_m1?igsh=NHJiaHEzNmUzZTVw"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Instagram - WALED YT"
-      >
-        <div class="icon-box">
-          <img
-            src="https://cdn.simpleicons.org/instagram/E4405F"
-            alt="Instagram"
-          />
-        </div>
+    </main>
+  </div>
 
-        <div class="link-content">
-          <h2 class="link-title">Instagram</h2>
-          <p class="link-subtitle">@waled_yt_m1</p>
-        </div>
 
-        <div class="arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none">
-            <path
-              d="M9 5L16 12L9 19"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-       
+  <script>
+    (() => {
+
+      /*
+        الإعدادات الأساسية
+      */
+
+      const CONFIG = {
+
+        /* العدد الموجود حاليًا كقيمة احتياطية */
+        fallbackFollowers: 1705,
+
+        /* التحديث كل دقيقة */
+        refreshMs: 60 * 1000,
+
+        /*
+          يمكن لاحقًا إنشاء ملف data.json
+          لعرض العدد الحقيقي المحدث تلقائيًا.
+        */
+        dataUrl: "./data.json",
+
+        /*
+          محاولة معرفة حالة بث Kick تلقائيًا.
+        */
+        kickApiUrl:
+          "https://kick.com/api/v2/channels/waledyt1m/livestream"
+      };
+
+
+      const totalFollowersEl =
+        document.getElementById("totalFollowers");
+
+      const updateTextEl =
+        document.getElementById("updateText");
+
+      const liveCardEl =
+        document.getElementById("liveCard");
+
+      const kickCardEl =
+        document.getElementById("kickCard");
+
+      const socialsEl =
+        document.getElementById("socials");
+
+
+      /* تنسيق الأرقام */
+
+      function formatNumber(value) {
+
+        const number = Number(value);
+
+        if (!Number.isFinite(number)) {
+          return "1,705";
+        }
+
+        return Math.max(
+          0,
+          Math.round(number)
+        ).toLocaleString("en-US");
+      }
+
+
+      /* تغيير إجمالي المتابعين */
+
+      function setFollowers(value) {
+
+        totalFollowersEl.textContent =
+          formatNumber(value);
+
+      }
+
+
+      /* تغيير نص التحديث */
+
+      function setUpdatedText(text) {
+
+        updateTextEl.textContent =
+          text || "يتم التحديث تلقائيًا";
+
+      }
+
+
+      /* تشغيل / إيقاف LIVE */
+
+      function setLive(isLive) {
+
+        const live =
+          Boolean(isLive);
+
+        liveCardEl.classList.toggle(
+          "show",
+          live
+        );
+
+        kickCardEl.classList.toggle(
+          "is-live",
+          live
+        );
+
+
+        /*
+          عندما يصبح Kick مباشرًا،
+          ينتقل كرت Kick إلى الأعلى.
+        */
+
+        if (live) {
+
+          socialsEl.prepend(
+            kickCardEl
+          );
+
+        } else {
+
+          socialsEl.appendChild(
+            kickCardEl
+          );
+
+        }
+
+      }
+
+
+      /*
+        ملف بيانات اختياري.
+        لو أنشأنا لاحقًا data.json
+        يمكن أن يرسل العدد وحالة Kick
+        بدون تعديل تصميم الصفحة.
+      */
+
+      async function loadOptionalDataFile() {
+
+        try {
+
+          const response =
+            await fetch(
+              `${CONFIG.dataUrl}?v=${Date.now()}`,
+              {
+                cache: "no-store",
+                headers: {
+                  Accept: "application/json"
+                }
+              }
+            );
+
+
+          if (!response.ok) {
+            return;
+          }
+
+
+          const data =
+            await response.json();
+
+
+          if (
+            typeof data.totalFollowers ===
+            "number"
+          ) {
+
+            setFollowers(
+              data.totalFollowers
+            );
+
+          }
+
+
+          if (
+            typeof data.kickLive ===
+            "boolean"
+          ) {
+
+            setLive(
+              data.kickLive
+            );
+
+          }
+
+
+          if (data.updatedAt) {
+
+            const date =
+              new Date(
+                data.updatedAt
+              );
+
+
+            if (
+              !Number.isNaN(
+                date.getTime()
+              )
+            ) {
+
+              setUpdatedText(
+                `آخر تحديث: ${date.toLocaleTimeString(
+                  "ar-SY",
+                  {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                  }
+                )}`
+              );
+
+            }
+
+          }
+
+        } catch (_) {
+
+          /*
+            إذا لم يكن data.json موجودًا،
+            الموقع يبقى يعمل بشكل طبيعي.
+          */
+
+        }
+
+      }
+
+
+      /*
+        فحص حالة Kick.
+        إذا كان البث متاحًا يتم إظهار LIVE.
+      */
+
+      async function checkKickLive() {
+
+        try {
+
+          const response =
+            await fetch(
+              `${CONFIG.kickApiUrl}?v=${Date.now()}`,
+              {
+                cache: "no-store",
+                headers: {
+                  Accept: "application/json"
+                }
+              }
+            );
+
+
+          if (!response.ok) {
+
+            if (response.status === 404) {
+              setLive(false);
+            }
+
+            return;
+          }
+
+
+          const data =
+            await response.json();
+
+
+          setLive(
+            Boolean(data)
+          );
+
+
+        } catch (_) {
+
+          /*
+            إذا منع المتصفح الاتصال الخارجي،
+            لا يتعطل الموقع.
+          */
+
+        }
+
+      }
+
+
+      /* التحديث الكامل */
+
+      async function refresh() {
+
+        const current =
+          Number(
+            totalFollowersEl.textContent
+              .replace(/,/g, "")
+          );
+
+
+        setFollowers(
+          Number.isFinite(current)
+            ? current
+            : CONFIG.fallbackFollowers
+        );
+
+
+        await loadOptionalDataFile();
+
+        await checkKickLive();
+
+      }
+
+
+      /*
+        التشغيل الأول
+      */
+
+      setFollowers(
+        CONFIG.fallbackFollowers
+      );
+
+      setLive(false);
+
+      refresh();
+
+
+      /*
+        إعادة الفحص كل دقيقة
+      */
+
+      setInterval(
+        refresh,
+        CONFIG.refreshMs
+      );
+
+    })();
+  </script>
+
+</body>
+</html>
