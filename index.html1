@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050505">
+<title>WALED YT</title>
+
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+margin:0;
+min-height:100vh;
+overflow-x:hidden;
+font-family:Arial,"Segoe UI",sans-serif;
+color:#fff;
+background:#050505;
+}
+
+body:before{
+content:"";
+position:fixed;
+width:420px;
+height:420px;
+left:50%;
+top:-220px;
+transform:translateX(-50%);
+border-radius:50%;
+background:rgba(0,255,136,.10);
+filter:blur(120px);
+pointer-events:none;
+}
+
+body:after{
+content:"";
+position:fixed;
+width:300px;
+height:300px;
+right:-130px;
+bottom:10%;
+border-radius:50%;
+background:rgba(0,255,136,.045);
+filter:blur(110px);
+pointer-events:none;
+}
+
+.page{
+position:relative;
+z-index:1;
+width:100%;
+max-width:620px;
+margin:auto;
+padding:45px 15px 50px;
+}
+
+.profile{
+text-align:center;
+animation:enter .65s ease both;
+}
+
+.avatar-wrap{
+position:relative;
+width:112px;
+height:112px;
+margin:0 auto 18px;
+}
+
+.avatar-ring{
+position:absolute;
+inset:-4px;
+border-radius:50%;
+background:conic-gradient(
+#00ff88,
+rgba(0,255,136,.08),
+#00ff88,
+rgba(0,255,136,.08),
+#00ff88
+);
+animation:spin 7s linear infinite;
+filter:drop-shadow(0 0 14px rgba(0,255,136,.4));
+}
+
+.avatar-inner{
+position:absolute;
+inset:4px;
+padding:4px;
+border-radius:50%;
+background:#080808;
+}
+
+.avatar{
+width:100%;
+height:100%;
+display:block;
+border-radius:50%;
+object-fit:cover;
+background:#111;
+}
+
+.online{
+position:absolute;
+right:1px;
+bottom:7px;
+width:18px;
+height:18px;
+border:3px solid #050505;
+border-radius:50%;
+background:#00f286;
+box-shadow:0 0 18px #00f286;
+animation:pulse 2s infinite;
+}
+
+.main-title{
+margin:0;
+font-size:31px;
+font-weight:900;
+}
+
+.username{
+margin-top:5px;
+color:#888;
+font-size:14px;
+direction:ltr;
+}
+
+.bio{
+margin:12px auto 0;
+color:#bbb;
+font-size:14px;
+}
+
+.followers{
+margin:26px 0 20px;
+padding:18px 20px;
+text-align:center;
+border:1px solid rgba(255,255,255,.07);
+border-radius:22px;
+background:rgba(255,255,255,.035);
+box-shadow:
+0 18px 50px rgba(0,0,0,.22),
+inset 0 1px rgba(255,255,255,.04);
+animation:enter .65s .08s ease both;
+}
+
+.followers-label{
+color:#888;
+font-size:13px;
+}
+
+.followers-number{
+margin-top:4px;
+font-size:30px;
+font-weight:900;
+direction:ltr;
+}
+
+.status{
+display:inline-flex;
+align-items:center;
+gap:8px;
+margin-top:9px;
+color:#888;
+font-size:12px;
+}
+
+.status-dot{
+width:7px;
+height:7px;
+border-radius:50%;
+background:#00ee83;
+box-shadow:0 0 12px #00ee83;
+}
+
+.links{
+display:flex;
+flex-direction:column;
+gap:13px;
+}
+
+.card{
+--x:50%;
+--y:50%;
+
+position:relative;
+display:flex;
+align-items:center;
+
+min-height:77px;
+width:100%;
+padding:12px 14px;
+
+border:1px solid rgba(255,255,255,.085);
+border-radius:21px;
+
+background:
+linear-gradient(
+135deg,
+rgba(255,255,255,.065),
+rgba(255,255,255,.025)
+);
+
+box-shadow:
+0 10px 32px rgba(0,0,0,.23),
+inset 0 1px rgba(255,255,255,.035);
+
+color:#fff;
+text-decoration:none;
+overflow:hidden;
+isolation:isolate;
+
+transition:
+transform .22s ease,
+border-color .22s ease,
+box-shadow .22s ease,
+background .22s ease;
+
+animation:enter .65s ease both;
+}
+
+.card:nth-child(1){animation-delay:.13s}
+.card:nth-child(2){animation-delay:.18s}
+.card:nth-child(3){animation-delay:.23s}
+.card:nth-child(4){animation-delay:.28s}
+.card:nth-child(5){animation-delay:.33s}
+.card:nth-child(6){animation-delay:.38s}
+
+.card:before{
+content:"";
+position:absolute;
+left:var(--x);
+top:var(--y);
+width:180px;
+height:180px;
+transform:translate(-50%,-50%);
+border-radius:50%;
+background:
+radial-gradient(
+circle,
+rgba(0,255,136,.17),
+transparent 70%
+);
+opacity:0;
+pointer-events:none;
+z-index:-1;
+transition:opacity .2s;
+}
+
+.card:after{
+content:"";
+position:absolute;
+top:-45%;
+left:-75%;
+width:42%;
+height:190%;
+transform:rotate(16deg);
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.14),
+transparent
+);
+opacity:0;
+pointer-events:none;
+}
+
+.card:hover{
+transform:translateY(-3px) scale(1.012);
+border-color:rgba(0,255,136,.28);
+box-shadow:
+0 15px 40px rgba(0,0,0,.3),
+0 0 28px rgba(0,255,136,.07);
+}
+
+.card:hover:before{
+opacity:1;
+}
+
+.card:hover:after{
+animation:shine .75s ease forwards;
+}
+
+.card.pressed{
+transform:scale(.945);
+border-color:rgba(0,255,136,.7);
+background:rgba(0,255,136,.08);
+box-shadow:
+0 3px 18px rgba(0,0,0,.4),
+0 0 32px rgba(0,255,136,.2);
+}
+
+.card.pressed:before{
+opacity:1;
+width:300px;
+height:300px;
+}
+
+.icon-box{
+flex:0 0 49px;
+width:49px;
+height:49px;
+
+display:grid;
+place-items:center;
+
+border-radius:15px;
+background:rgba(255,255,255,.055);
+border:1px solid rgba(255,255,255,.065);
+
+transition:
+transform .25s ease,
+background .25s ease,
+box-shadow .25s ease;
+}
+
+.icon-box img{
+width:28px;
+height:28px;
+display:block;
+object-fit:contain;
+}
+
+.card:hover .icon-box{
+transform:scale(1.08) rotate(-2deg);
+background:rgba(255,255,255,.08);
+box-shadow:0 0 20px rgba(0,255,136,.08);
+}
+
+.card.pressed .icon-box{
+transform:scale(.86) rotate(3deg);
+}
+
+.content{
+min-width:0;
+flex:1;
+padding:0 13px;
+}
+
+.card-title{
+font-size:16px;
+font-weight:800;
+line-height:1.3;
+}
+
+.card-sub{
+margin-top:4px;
+color:#888;
+font-size:12px;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+direction:ltr;
+text-align:right;
+}
+
+.arrow{
+flex:0 0 33px;
+width:33px;
+height:33px;
+display:grid;
+place-items:center;
+border-radius:10px;
+color:#888;
+background:rgba(255,255,255,.035);
+transition:.25s ease;
+}
+
+.arrow svg{
+width:17px;
+height:17px;
+}
+
+.card:hover .arrow{
+color:#fff;
+background:rgba(0,255,136,.08);
+transform:translateX(-3px);
+}
+
+.card.pressed .arrow{
+color:#00ff88;
+transform:scale(.9);
+}
+
+.ripple{
+position:absolute;
+width:10px;
+height:10px;
+border-radius:50%;
+background:rgba(255,255,255,.35);
+transform:translate(-50%,-50%) scale(0);
+pointer-events:none;
+z-index:5;
+animation:ripple .65s ease-out forwards;
+}
+
+.footer{
+margin-top:28px;
+text-align:center;
+font-size:12px;
+color:#666;
+}
+
+.footer strong{
+color:#999;
+}
+
+.transition{
+position:fixed;
+inset:0;
+display:grid;
+place-items:center;
+background:rgba(0,0,0,.5);
+backdrop-filter:blur(9px);
+opacity:0;
+visibility:hidden;
+z-index:9999;
+transition:.2s;
+}
+
+.transition.active{
+opacity:1;
+visibility:visible;
+}
+
+.loader{
+width:68px;
+height:68px;
+border:2px solid rgba(0,255,136,.12);
+border-top-color:#00ff88;
+border-radius:50%;
+animation:spin .7s linear infinite;
+}
+
+.loader:after{
+content:"W";
+display:grid;
+place-items:center;
+height:100%;
+font-weight:900;
+color:#fff;
+}
+
+@keyframes spin{
+to{transform:rotate(360deg)}
+}
+
+@keyframes pulse{
+50%{
+box-shadow:
+0 0 0 6px rgba(0,242,134,.04),
+0 0 25px #00f286;
+}
+}
+
+@keyframes shine{
+0%{
+left:-75%;
+opacity:0;
+}
+15%{
+opacity:1;
+}
+100%{
+left:150%;
+opacity:0;
+}
+}
+
+@keyframes ripple{
+to{
+transform:translate(-50%,-50%) scale(25);
+opacity:0;
+}
+}
+
+@keyframes enter{
+from{
+opacity:0;
+transform:translateY(17px) scale(.98);
+}
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+}
+
+@media(max-width:480px){
+
+.page{
+padding:35px 13px 45px;
+}
+
+.avatar-wrap{
+width:104px;
+height:104px;
+}
+
+.main-title{
+font-size:28px;
+}
+
+.card{
+min-height:73px;
+padding:11px 12px;
+border-radius:19px;
+}
+
+.icon-box{
+width:47px;
+height:47px;
+flex-basis:47px;
+}
+
+.icon-box img{
+width:27px;
+height:27px;
+}
+
+.content{
+padding:0 10px;
+}
+
+.card-title{
+font-size:15px;
+}
+
+.arrow{
+width:31px;
+height:31px;
+flex-basis:31px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<main class="page">
+
+<section class="profile">
+
+<div class="avatar-wrap">
+
+<div class="avatar-ring"></div>
+
+<div class="avatar-inner">
+<img
+class="avatar"
+src="https://unavatar.io/youtube/waledyt1m"
+alt="WALED YT"
+referrerpolicy="no-referrer"
+onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#111,#222)'"
+>
+</div>
+
+<span class="online"></span>
+
+</div>
+
+<h1 class="main-title">WALED YT</h1>
+
+<div class="username">@waledyt1m</div>
+
+<p class="bio">أهلاً بك في روابطي الرسمية 👑</p>
+
+</section>
+
+
+<section class="followers">
+
+<div class="followers-label">إجمالي المتابعين</div>
+
+<div class="followers-number">1,705</div>
+
+<div class="status">
+<span class="status-dot"></span>
+<span>يتم تحديث المعلومات تلقائيًا</span>
+</div>
+
+</section>
+
+
+<section class="links">
+
+
+<!-- YouTube -->
+
+<a
+class="card"
+href="https://youtube.com/@waledyt1m?si=EUTLyYKOCwkbJurZ"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+<div class="icon-box">
+<img
+src="https://cdn.simpleicons.org/youtube/FF0000"
+alt="YouTube"
+>
+</div>
+
+<div class="content">
+<div class="card-title">YouTube</div>
+<div class="card-sub">@waledyt1m</div>
+</div>
+
+<div class="arrow">
+<svg viewBox="0 0 24 24" fill="none">
+<path
+d="M9 5l7 7-7 7"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"
+/>
+</svg>
+</div>
+
+</a>
+
+
+<!-- Instagram -->
+
+<a
+class="card"
+href="https://www.instagram.com/waled_yt_m1?igsh=NHJiaHEzNmUzZTVw"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+<div class="icon-box">
+<img
+src="https://cdn.simpleicons.org/instagram/E4405F"
+alt="Instagram"
+>
+</div>
+
+<div class="content">
+<div class="card-title">Instagram</div>
+<div class="card-sub">@waled_yt_m1</div>
+</div>
+
+<div class="arrow">
+<svg viewBox="0 0 24 24" fill="none">
+<path
+d="M9 5l7 7-7 7"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"
+/>
+</svg>
+</div>
+
+</a>
+
+
+<!-- TikTok -->
+
+<a
+class="card"
+href="https://www.tiktok.com/@waled_yt"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+<div class="icon-box">
+<img
+src="https://cdn.simpleicons.org/tiktok/FFFFFF"
+alt="TikTok"
+>
+</div>
+
+<div class="content">
+<div class="card-title">TikTok</div>
+<div class="card-sub">@waled_yt</div>
+</div>
+
+<div class="arrow">
+<svg viewBox="0 0 24 24" fill="none">
+<path
+d="M9 5l7 7-7 7"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"
+/>
+</svg>
+</div>
+
+</a>
+
+
+<!-- Facebook -->
+
+<a
+class="card"
+href="https://www.facebook.com/share/1DjexJmpXv/"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+<div class="icon-box">
+<img
+src="https://cdn.simpleicons.org/facebook/1877F2"
+alt="Facebook"
+>
+</div>
+
+<div class="content">
+<div class="card-title">Facebook</div>
+<div class="card-sub">WALED YT</div>
+</div>
+
+<div class="arrow">
+<svg viewBox="0 0 24 24" fill="none">
+<path
+d="M9 5l7 7-7 7"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"
+/>
+</svg>
+</div>
+
+</a>
+
+
+  
+<!-- Kick -->
+
+<a
+class="card"
+href="https://kick.com/waledyt1m"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+<div class="icon-box">
+<img
+src="https://cdn.simpleicons.org/kick/53FC18"
+alt="Kick"
+>
+</div>
+
+<div class="content">
+<div class="card-title">Kick</div>
+<div class="card-sub">waledyt1m</div>
+</div>
+
+<div class="arrow">
+<svg viewBox="0 0 24 24" fill="none">
+<path
+d="M9 5l7 7-7 7"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"
+/>
+</svg>
+</div>
+
+</a>
+
+
+<!-- Discord -->
+
+<a
+class="card"
+href="https://discord.gg/jaRGm8QGB"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+<div class="icon-box">
+<img
+src="https://cdn.simpleicons.org/discord/5865F2"
+alt="Discord"
+>
+</div>
+
+<div class="content">
+<div class="card-title">Discord</div>
+<div class="card-sub">WALED YT Community</div>
+</div>
+
+<div class="arrow">
+<svg viewBox="0 0 24 24" fill="none">
+<path
+d="M9 5l7 7-7 7"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"
+/>
+</svg>
+</div>
+
+</a>
+
+</section>
+
+
+<footer class="footer">
+<strong>WALED YT</strong> • جميع الروابط الرسمية
+</footer>
+
+</main>
+
+
+<div class="transition" id="transition">
+<div class="loader"></div>
+</div>
+
+
+<script>
+
+const cards=document.querySelectorAll(".card");
+const transition=document.getElementById("transition");
+
+cards.forEach(card=>{
+
+function position(e){
+
+const rect=card.getBoundingClientRect();
+const point=e.touches ? e.touches[0] : e;
+
+card.style.setProperty(
+"--x",
+(point.clientX-rect.left)+"px"
+);
+
+card.style.setProperty(
+"--y",
+(point.clientY-rect.top)+"px"
+);
+}
+
+function makeRipple(e){
+
+const rect=card.getBoundingClientRect();
+const point=e.touches ? e.touches[0] : e;
+
+const ripple=document.createElement("span");
+
+ripple.className="ripple";
+
+ripple.style.left=(point.clientX-rect.left)+"px";
+ripple.style.top=(point.clientY-rect.top)+"px";
+
+card.appendChild(ripple);
+
+setTimeout(()=>{
+ripple.remove();
+},700);
+
+}
+
+card.addEventListener("mousemove",position);
+
+card.addEventListener("mousedown",e=>{
+position(e);
+makeRipple(e);
+card.classList.add("pressed");
+});
+
+card.addEventListener("touchstart",e=>{
+position(e);
+makeRipple(e);
+card.classList.add("pressed");
+},{passive:true});
+
+["mouseup","mouseleave","touchend","touchcancel"].forEach(event=>{
+card.addEventListener(event,()=>{
+card.classList.remove("pressed");
+});
+});
+
+card.addEventListener("click",e=>{
+
+if(
+e.ctrlKey ||
+e.metaKey ||
+e.shiftKey ||
+e.altKey
+){
+return;
+}
+
+e.preventDefault();
+
+card.classList.add("pressed");
+
+transition.classList.add("active");
+
+const url=card.href;
+
+setTimeout(()=>{
+window.location.href=url;
+},280);
+
+});
+
+});
+
+</script>
+
+</body>
+  </html>
